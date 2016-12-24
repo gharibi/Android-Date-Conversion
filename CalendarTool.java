@@ -1,6 +1,7 @@
 package TestUtil;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -60,6 +61,17 @@ public class CalendarTool {
     public CalendarTool(int year, int month, int day)
     {
         setGregorianDate(year,month,day);
+    }
+
+    /**
+     * JavaSource_Calendar:
+     * This constructor receives a Gregorian date and initializes the other private
+     * members of the class accordingly.
+     * @param date Date
+     */
+    public CalendarTool(Date date)
+    {
+        setGregorianDate(date);
     }
 
     /**
@@ -187,7 +199,7 @@ public class CalendarTool {
                 "Thursday",
                 "Friday",
                 "Saturday",
-        "Sunday"};
+                "Sunday"};
         return (weekDayStr[getDayOfWeek()]);
     }
 
@@ -303,6 +315,22 @@ public class CalendarTool {
     }
 
     /**
+     * setGregorianDate:
+     * Sets the date according to the Gregorian calendar and adjusts the other dates.
+     * @param date Date
+     */
+    public void setGregorianDate(Date date)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        setGregorianDate(year, month, day);
+    }
+
+    /**
      * setJulianDate:
      * Sets the date according to the Julian calendar and adjusts the other dates.
      * @param year int
@@ -335,8 +363,8 @@ public class CalendarTool {
     {
         // Iranian years starting the 33-year rule
         int Breaks[]=
-            {-61, 9, 38, 199, 426, 686, 756, 818,1111,1181,
-                1210,1635,2060,2097,2192,2262,2324,2394,2456,3178} ;
+                {-61, 9, 38, 199, 426, 686, 756, 818,1111,1181,
+                        1210,1635,2060,2097,2192,2262,2324,2394,2456,3178} ;
         int jm,N,leapJ,leapG,jp,j,jump;
         gYear = irYear + 621;
         leapJ = -14;
@@ -386,8 +414,8 @@ public class CalendarTool {
     {
         // Iranian years starting the 33-year rule
         int Breaks[]=
-            {-61, 9, 38, 199, 426, 686, 756, 818,1111,1181,
-                1210,1635,2060,2097,2192,2262,2324,2394,2456,3178} ;
+                {-61, 9, 38, 199, 426, 686, 756, 818,1111,1181,
+                        1210,1635,2060,2097,2192,2262,2324,2394,2456,3178} ;
         int jm,N,leapJ,leapG,jp,j,jump;
         gYear = irYear1 + 621;
         leapJ = -14;
